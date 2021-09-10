@@ -1,0 +1,31 @@
+/* tslint:disable */
+/* eslint-disable */
+
+import React, { FunctionComponent } from 'react';
+import { ViewProps } from 'react-native';
+import { Svg, GProps, Path } from 'react-native-svg';
+import { getIconColor } from './helper';
+
+interface Props extends GProps, ViewProps {
+  size?: number;
+  color?: string | string[];
+}
+
+let IconSetting: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+  return (
+    <Svg viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
+      <Path
+        d="M895.325091 512A127.674182 127.674182 0 0 1 977.454545 392.983273a477.765818 477.765818 0 0 0-52.200727-126.021818 127.325091 127.325091 0 0 1-168.215273-168.215273A465.454545 465.454545 0 0 0 631.016727 46.545455 128 128 0 0 1 512 128.674909 127.674182 127.674182 0 0 1 392.983273 46.545455a465.454545 465.454545 0 0 0-126.021818 52.200727 127.325091 127.325091 0 0 1-168.215273 168.215273A465.454545 465.454545 0 0 0 46.545455 392.983273 128 128 0 0 1 128.674909 512 127.674182 127.674182 0 0 1 46.545455 631.016727a465.454545 465.454545 0 0 0 52.200727 126.021818 127.325091 127.325091 0 0 1 168.215273 168.215273A477.765818 477.765818 0 0 0 392.983273 977.454545a127.325091 127.325091 0 0 1 238.033454 0 477.765818 477.765818 0 0 0 126.021818-52.200727 127.325091 127.325091 0 0 1 168.215273-168.215273A477.765818 477.765818 0 0 0 977.454545 631.016727 127.674182 127.674182 0 0 1 895.325091 512zM512 639.674182a127.674182 127.674182 0 1 1 0-255.348364 127.674182 127.674182 0 0 1 0 255.348364z"
+        fill={getIconColor(color, 0, '#D7B881')}
+      />
+    </Svg>
+  );
+};
+
+IconSetting.defaultProps = {
+  size: 18,
+};
+
+IconSetting = React.memo ? React.memo(IconSetting) : IconSetting;
+
+export default IconSetting;
