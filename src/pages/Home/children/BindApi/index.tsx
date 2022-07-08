@@ -139,7 +139,7 @@ const BindApi: React.FC<IProps> = ({navigation, route}) => {
         }
         toast(tipMsg);
         dispatch({
-          type: 'user/getExchangeApiKey',
+          type: 'user/updateExchangeApiKey',
           callback: () => {
             if (from) {
               navigation.navigate(from as any);

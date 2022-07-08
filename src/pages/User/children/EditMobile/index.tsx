@@ -128,6 +128,7 @@ const EditMobile: React.FC<IProps> = ({navigation, route}) => {
                   <>
                     <Field
                       name="mobile"
+                      keyboardType="phone-pad"
                       placeholder="请输入原手机号码"
                       prefix={<Text style={styles.tag}>+86</Text>}
                       component={Input}
@@ -136,6 +137,7 @@ const EditMobile: React.FC<IProps> = ({navigation, route}) => {
                     />
                     <Field
                       name="smsCaptchaOld"
+                      keyboardType="number-pad"
                       placeholder="请输入验证码"
                       suffix={getOldSmsBtn}
                       component={Input}
@@ -144,12 +146,14 @@ const EditMobile: React.FC<IProps> = ({navigation, route}) => {
                 ) : null}
                 <Field
                   name="newMobile"
+                  keyboardType="phone-pad"
                   placeholder={`请输入${mobile ? '新' : ''}手机号码`}
                   prefix={<Text style={styles.tag}>+86</Text>}
                   component={Input}
                 />
                 <Field
                   name="smsCaptchaNew"
+                  keyboardType="number-pad"
                   placeholder="请输入验证码"
                   suffix={getNewSmsBtn}
                   component={Input}

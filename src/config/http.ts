@@ -36,10 +36,16 @@ class HttpRequest {
         const apiKeyList = userState.apiKeyList;
         const apiKeyIndex = userState.apiKeyIndex;
         let exchangeNo = '1';
-        if (Array.isArray(apiKeyList) && apiKeyList.length) {
+        if (
+          Array.isArray(apiKeyList) &&
+          apiKeyList.length &&
+          apiKeyList[apiKeyIndex]
+        ) {
           exchangeNo = apiKeyList[apiKeyIndex].exchangeNo;
         }
-        config.data.exchangeNo = exchangeNo;
+        if (typeof config.data.exchangeNo === 'undefined') {
+          config.data.exchangeNo = exchangeNo;
+        }
         if (token) {
           config.headers.Authorization = token;
         }
@@ -47,7 +53,6 @@ class HttpRequest {
       },
       err => {
         errorHandle(err);
-        // Do something with request error
         return Promise.reject(err);
       },
     );
@@ -55,8 +60,6 @@ class HttpRequest {
     // 响应请求的拦截器
     instance.interceptors.response.use(
       response => {
-        // Any status code that lie within the range of 2xx cause this function to trigger
-        // Do something with response data
         if (isHttpSuccess(response.status)) {
           const data = response.data;
           if (data.code === ERR_OK) {

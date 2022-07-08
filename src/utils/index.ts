@@ -3,6 +3,8 @@ import Toast, {ToastOptions} from 'react-native-root-toast';
 import Clipboard from '@react-native-community/clipboard';
 import dayjs from 'dayjs';
 
+export const themeColor = '#D59420';
+
 export function delay(ms: number) {
   return new Promise(resolve => {
     setTimeout(resolve, ms);
@@ -105,4 +107,12 @@ export async function copyText(text: string, isShow = true) {
   if (str) {
     isShow && toast('复制成功');
   }
+}
+
+// 换行切割
+export function splitLineStr(str: string) {
+  if (!str) {
+    return [];
+  }
+  return str.split(/[\n\s]/);
 }

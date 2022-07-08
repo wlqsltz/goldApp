@@ -84,8 +84,8 @@ const Login: React.FC<IProps> = ({navigation}) => {
                 <Text style={styles.head}>欢迎回来</Text>
                 <Field
                   name="loginName"
+                  keyboardType="phone-pad"
                   placeholder="请输入手机号码"
-                  keyboardType="numeric"
                   component={Input}
                 />
                 <Field

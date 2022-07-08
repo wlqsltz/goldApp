@@ -32,6 +32,7 @@ export interface UserModel extends Model {
     logout: Effect; // 退出登录
     getUserDetail: Effect; // 获取用户详情
     getExchangeApiKey: Effect; // 获取用户绑定的apiList
+    updateExchangeApiKey: Effect; // 用户绑定或修改完的api后，更新apiList和user的apiKeyStatus字段
     changeApiKeyIndex: Effect; // 切换api
     registerInit: Effect; // 获取注册页面初始数据
     sendSmsCode: Effect; // 发送验证码
@@ -61,7 +62,7 @@ const initialState = {
 /**
  * 登录模块的model
  */
-const PlayerModel: UserModel = {
+const UserModel: UserModel = {
   namespace: 'user',
   state: initialState,
   reducers: {
@@ -127,7 +128,16 @@ const PlayerModel: UserModel = {
       });
       callback?.();
     },
-    *changeApiKeyIndex({payload}, {call, put}) {
+    *updateExchangeApiKey({callback}, {put}) {
+      yield put({
+        type: 'getExchangeApiKey',
+      });
+      yield put({
+        type: 'getUserDetail',
+      });
+      callback?.();
+    },
+    *changeApiKeyIndex({payload}, {put}) {
       yield storage.save({
         key: API_KEY_INDEX,
         data: payload,
@@ -250,6 +260,7 @@ const PlayerModel: UserModel = {
           type: 'setState',
           payload: {
             apiKeyIndex,
+            loaded: true,
           },
         });
       } catch (error) {
@@ -270,4 +281,4 @@ const PlayerModel: UserModel = {
   },
 };
 
-export default PlayerModel;
+export default UserModel;

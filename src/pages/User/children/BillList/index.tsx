@@ -291,6 +291,8 @@ const styles = StyleSheet.create({
 const pickerSelectStyles = StyleSheet.create({
   placeholder: {
     color: '#333',
+    fontFamily: 'PingFangSC-Medium',
+    fontWeight: 'bold',
   },
   modalViewTop: {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -299,10 +301,10 @@ const pickerSelectStyles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   inputIOS: {
-    fontFamily: 'PingFangSC-Regular',
     fontSize: 16,
     color: '#333',
-    // opacity: 0,
+    fontFamily: 'PingFangSC-Medium',
+    fontWeight: 'bold',
   },
   inputAndroid: {
     fontSize: 16,

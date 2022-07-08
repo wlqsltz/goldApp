@@ -129,6 +129,9 @@ const Account: React.FC<IProps> = ({navigation}) => {
   const goWithdrawal = useCallback(() => {
     navigation.navigate('Withdrawal');
   }, [navigation]);
+  const goTransfer = useCallback(() => {
+    navigation.navigate('Transfer');
+  }, [navigation]);
 
   useEffect(() => {
     const task = InteractionManager.runAfterInteractions(() => {
@@ -182,7 +185,7 @@ const Account: React.FC<IProps> = ({navigation}) => {
           <Touchable onPress={goWithdrawal} style={styles.btn}>
             <Text style={styles.btn_txt}>提币</Text>
           </Touchable>
-          <Touchable style={styles.btn}>
+          <Touchable onPress={goTransfer} style={styles.btn}>
             <Text style={styles.btn_txt}>互转</Text>
           </Touchable>
         </View>

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useMemo, useRef, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -33,7 +33,7 @@ interface IProps {
 
 const selectLoading = createSelector(
   (state: RootState) => state.loading,
-  loading => loading.effects['message/getExchangeApiKey'],
+  loading => loading.effects['message/getMessages'],
 );
 const selectUnReadInfo = createSelector(
   (state: RootState) => state.message,

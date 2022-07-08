@@ -7,14 +7,14 @@ export interface IMarketTab {
   id: string;
   name: string;
   listAddRes: IMarket[];
-  sortName: 'pirce' | 'upDown' | '';
-  sortValue: '0' | '1' | '';
 }
 
 export interface MarketState {
   keyword: string;
   tabList: IMarketTab[];
   curTabId: string;
+  sortName: 'pirce' | 'upDown' | '';
+  sortValue: '0' | '1' | '';
 }
 
 interface MarketModel extends Model {
@@ -29,7 +29,7 @@ interface MarketModel extends Model {
   };
 }
 
-const initialState = {
+const initialState: MarketState = {
   keyword: '',
   tabList: [],
   curTabId: '',
@@ -55,7 +55,7 @@ const homeModel: MarketModel = {
       );
       const list = yield call(marketListAdd, {
         symbol: keyword,
-        price: sortName === 'pirce' ? sortValue : '',
+        price: sortName === 'price' ? sortValue : '',
         upDown: sortName === 'upDown' ? sortValue : '',
       });
       const _curTabId = curTabId || list[0]?.id;
@@ -81,7 +81,6 @@ const homeModel: MarketModel = {
         params.sortValue = '0';
         params.sortName = payload.sortName;
       }
-      console.log(params);
       yield put({
         type: 'setState',
         payload: params,

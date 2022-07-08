@@ -70,7 +70,7 @@ const BottomTabs: React.FC<IProps> = ({navigation, route}) => {
         },
         headerRight: () => null,
       });
-    } else if (routeName === 'Message') {
+    } else if (routeName === 'Message' || routeName === 'Strategy') {
       navigation.setOptions({
         headerShown: false,
       });

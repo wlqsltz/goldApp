@@ -114,12 +114,14 @@ const ResetPwd: React.FC<IProps> = ({navigation}) => {
                 <Text style={styles.head}>重置密码</Text>
                 <Field
                   name="mobile"
+                  keyboardType="phone-pad"
                   placeholder="请输入手机号码"
                   prefix={<Text style={styles.tag}>+86</Text>}
                   component={Input}
                 />
                 <Field
                   name="smsCaptcha"
+                  keyboardType="number-pad"
                   placeholder="请输入验证码"
                   suffix={getSmsBtn}
                   component={Input}

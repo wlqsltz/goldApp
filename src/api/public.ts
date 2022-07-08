@@ -51,7 +51,7 @@ export function smsListFront(type = '1') {
 
 // 前端列表条件查询交易所
 export async function exchangeListFront() {
-  return axios.post('/core/v1/exchange/list_front', {status: 1});
+  return axios.post<IExchange[]>('/core/v1/exchange/list_front', {status: 1});
 }
 
 // 列表条件查询文章类型

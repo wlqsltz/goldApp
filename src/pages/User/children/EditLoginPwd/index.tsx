@@ -113,6 +113,7 @@ const EditLoginPwd: React.FC<IProps> = ({navigation, route}) => {
               <>
                 <Field
                   name="mobile"
+                  keyboardType="phone-pad"
                   placeholder="请输入手机号码"
                   prefix={<Text style={styles.tag}>+86</Text>}
                   component={Input}
@@ -121,6 +122,7 @@ const EditLoginPwd: React.FC<IProps> = ({navigation, route}) => {
                 />
                 <Field
                   name="smsCaptcha"
+                  keyboardType="number-pad"
                   placeholder="请输入验证码"
                   suffix={getSmsBtn}
                   component={Input}

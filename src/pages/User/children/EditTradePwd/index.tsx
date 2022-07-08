@@ -115,6 +115,7 @@ const EditTradePwd: React.FC<IProps> = ({navigation, route}) => {
               <>
                 <Field
                   name="mobile"
+                  keyboardType="phone-pad"
                   placeholder="请输入手机号码"
                   prefix={<Text style={styles.tag}>+86</Text>}
                   component={Input}
@@ -124,17 +125,20 @@ const EditTradePwd: React.FC<IProps> = ({navigation, route}) => {
                 <Field
                   name="smsCaptcha"
                   placeholder="请输入验证码"
+                  keyboardType="number-pad"
                   suffix={getSmsBtn}
                   component={Input}
                 />
                 <Field
                   name="tradePwd"
+                  keyboardType="number-pad"
                   placeholder="请输入交易密码(6位数字组成）"
                   component={Input}
                   secureTextEntry
                 />
                 <Field
                   name="reTradePwd"
+                  keyboardType="number-pad"
                   placeholder="请确认密码"
                   component={Input}
                   secureTextEntry

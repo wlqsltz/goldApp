@@ -15,7 +15,7 @@ import {
 import {useFocusEffect} from '@react-navigation/core';
 import {createSelector} from 'reselect';
 import {useDispatch, useSelector} from 'react-redux';
-import _ from 'lodash';
+import {debounce} from 'lodash';
 import {RootStackNavigation} from '@/navigator/index';
 import {RootState} from '@/models/index';
 import GlobalStyles from '@/assets/style/global';
@@ -68,7 +68,7 @@ const Market: React.FC<IProps> = ({navigation, rootNavigation}) => {
 
   const keyword = useSelector(selectKeyword);
   const doSearch = useCallback(
-    _.debounce(() => {
+    debounce(() => {
       dispatch({
         type: 'market/getMarketList',
       });
@@ -228,12 +228,14 @@ const Market: React.FC<IProps> = ({navigation, rootNavigation}) => {
   useFocusEffect(
     useCallback(() => {
       const task = InteractionManager.runAfterInteractions(() => {
-        dispatch({
-          type: 'market/getMarketList',
-          callback: () => {
-            setHasMore(false);
-          },
-        });
+        setTimeout(() => {
+          dispatch({
+            type: 'market/getMarketList',
+            callback: () => {
+              setHasMore(false);
+            },
+          });
+        }, 0);
       });
       return () => task.cancel();
     }, [dispatch]),
@@ -334,6 +336,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#fff',
+    height: 51,
   },
   tabs_scroll: {
     paddingLeft: 4,

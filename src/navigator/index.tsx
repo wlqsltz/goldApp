@@ -37,6 +37,15 @@ import BillDetail from '@/pages/User/children/BillDetail';
 import Charge from '@/pages/User/children/Charge';
 import ChargeList from '@/pages/User/children/ChargeList';
 import Withdrawal from '@/pages/User/children/Withdrawal';
+import TransferOrWithdrawalList from '@/pages/User/children/TransferOrWithdrawalList';
+import Transfer from '@/pages/User/children/Transfer';
+import Billing from '@/pages/Home/children/Billing';
+import EverydayProfit from '@/pages/Home/children/EverydayProfit';
+import SymbolsProfit from '@/pages/Home/children/SymbolsProfit';
+import OnedayProfit from '@/pages/Home/children/OnedayProfit';
+import TradeRecord from '@/pages/Home/children/TradeRecord';
+import TradeRecordDetail from '@/pages/Home/children/TradeRecordDetail';
+import OneSymbolProfit from '@/pages/Home/children/OneSymbolProfit';
 
 export type RootStackParamList = {
   BottomTabs: {
@@ -44,11 +53,36 @@ export type RootStackParamList = {
   };
   ApiAuthorization: undefined;
   ElectronicBilling: undefined;
+  Billing: undefined;
+  EverydayProfit: {
+    currency: string;
+    totalIncome: string;
+  };
+  SymbolsProfit: undefined;
+  OneSymbolProfit: {
+    symbol: string;
+    toSymbol: string;
+    totalIncome: string;
+    exchangeNo: string;
+  };
+  OnedayProfit: {
+    currency: string;
+    date: string;
+    dayIncome: string;
+  };
+  TradeRecord: {
+    date?: string;
+    symbol?: string;
+    toSymbol?: string;
+  };
+  TradeRecordDetail: {
+    id: string;
+  };
   CpsList: undefined;
   ChoseExchange: undefined;
   BindApi: {
     id?: string;
-    exchangeNo: string;
+    exchangeNo?: string;
     from?: string;
   };
   MessageDetail: {
@@ -71,6 +105,10 @@ export type RootStackParamList = {
   };
   ChargeList: undefined;
   Withdrawal: undefined;
+  Transfer: undefined;
+  TransferOrWithdrawalList: {
+    type: string;
+  };
   EditMobile: {
     mobile?: string;
   };
@@ -113,6 +151,10 @@ export default function App() {
     // 更新用户数据
     dispatch({
       type: 'user/getUserDetail',
+    });
+    // 用户绑定apikeylist
+    dispatch({
+      type: 'user/getExchangeApiKey',
     });
   }
   return (
@@ -171,6 +213,59 @@ export default function App() {
               component={ElectronicBilling}
               options={{
                 headerTitle: '电子账单',
+                headerTransparent: true,
+                headerTintColor: '#fff',
+              }}
+            />
+            <Stack.Screen
+              name="Billing"
+              component={Billing}
+              options={{
+                headerTitle: '电子账单',
+                headerTransparent: true,
+                headerTintColor: '#fff',
+              }}
+            />
+            <Stack.Screen
+              name="EverydayProfit"
+              component={EverydayProfit}
+              options={{
+                headerTitle: '每日盈利分布',
+              }}
+            />
+            <Stack.Screen
+              name="SymbolsProfit"
+              component={SymbolsProfit}
+              options={{
+                headerTitle: '币对盈利分布',
+              }}
+            />
+            <Stack.Screen
+              name="OneSymbolProfit"
+              component={OneSymbolProfit}
+              options={{
+                headerTitle: '',
+              }}
+            />
+            <Stack.Screen
+              name="OnedayProfit"
+              component={OnedayProfit}
+              options={{
+                headerTitle: '电子账单',
+              }}
+            />
+            <Stack.Screen
+              name="TradeRecord"
+              component={TradeRecord}
+              options={{
+                headerTitle: '交易记录',
+              }}
+            />
+            <Stack.Screen
+              name="TradeRecordDetail"
+              component={TradeRecordDetail}
+              options={{
+                headerTitle: '委托详情',
                 headerTransparent: true,
                 headerTintColor: '#fff',
               }}
@@ -286,6 +381,20 @@ export default function App() {
               component={Withdrawal}
               options={{
                 headerTitle: '提币',
+              }}
+            />
+            <Stack.Screen
+              name="Transfer"
+              component={Transfer}
+              options={{
+                headerTitle: '内部转账',
+              }}
+            />
+            <Stack.Screen
+              name="TransferOrWithdrawalList"
+              component={TransferOrWithdrawalList}
+              options={{
+                headerTitle: '',
               }}
             />
             <Stack.Screen

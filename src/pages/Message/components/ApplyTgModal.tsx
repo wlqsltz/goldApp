@@ -1,4 +1,3 @@
-import DatePicker from 'react-native-datepicker';
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {
   Modal,
@@ -8,6 +7,7 @@ import {
   TextInput,
   GestureResponderEvent,
 } from 'react-native';
+import DatePicker from 'react-native-datepicker';
 import {RootSiblingParent} from 'react-native-root-siblings';
 import {createSelector} from 'reselect';
 import {useSelector} from 'react-redux';
@@ -182,10 +182,10 @@ const ApplyTgModal: React.FC<IProps> = ({
                   style={styles.input}
                   placeholderTextColor={'#999999'}
                   placeholder={'请输入托管金额'}
-                  autoCapitalize={'none'}
-                  keyboardType={'numeric'}
+                  autoCapitalize="none"
+                  keyboardType="numeric"
                   autoCorrect={false}
-                  clearButtonMode={'while-editing'}
+                  clearButtonMode="while-editing"
                   onChangeText={setEntrustAmount}
                   value={entrustAmount}
                 />

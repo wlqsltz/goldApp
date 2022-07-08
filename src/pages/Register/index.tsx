@@ -5,12 +5,11 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  ActivityIndicator,
   StatusBar,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {createSelector} from 'reselect';
-import {Field, Formik, FormikContextType} from 'formik';
+import {Field, Formik} from 'formik';
 import * as Yup from 'yup';
 import CheckBox from 'react-native-check-box';
 import {RootStackNavigation} from '@/navigator/index';
@@ -74,63 +73,6 @@ const Register: React.FC<IProps> = ({navigation}) => {
     [dispatch],
   );
   const {getSmsBtn} = useCountdown('mobile', sendSmsCode);
-
-  // const {remainSeconds, countdown} = useCountdown();
-  // const [sending, setSending] = useState(false);
-  // const sendSmsCode = useCallback(
-  //   async (formContext: FormikContextType<any>) => {
-  //     if (remainSeconds > -1) {
-  //       // 正在倒计时
-  //       return;
-  //     }
-  //     formContext.validateField('mobile');
-  //     formContext.setFieldTouched('mobile', true);
-  //     const mobile = formContext.getFieldProps('mobile').value || '';
-  //     if (!/^1[2-9]\d{9}$/.test(mobile.trim())) {
-  //       // 或者手机号未填写正确
-  //       return;
-  //     }
-  //     setSending(true);
-  //     dispatch({
-  //       type: 'user/sendSmsCode',
-  //       payload: {
-  //         bizType: 'C_REG_MOBILE',
-  //         mobile,
-  //       },
-  //       callback: (err: any) => {
-  //         setSending(false);
-  //         if (!err) {
-  //           countdown();
-  //         }
-  //       },
-  //     });
-  //   },
-  //   [remainSeconds, countdown, dispatch],
-  // );
-  // const getSmsBtn = useCallback(
-  //   (formContext: FormikContextType<any>) => {
-  //     const isCountdown = remainSeconds > -1;
-  //     return (
-  //       <Touchable
-  //         disabled={sending || isCountdown}
-  //         style={[styles.sms_btn, isCountdown && styles.sms_btn_disabled]}
-  //         onPress={() => sendSmsCode(formContext)}>
-  //         {sending ? (
-  //           <ActivityIndicator size="small" color={themeColor} />
-  //         ) : (
-  //           <Text
-  //             style={[
-  //               styles.sms_btn_txt,
-  //               isCountdown && styles.sms_btn_txt_disabled,
-  //             ]}>
-  //             {isCountdown ? `(${remainSeconds})s` : '获取验证码'}
-  //           </Text>
-  //         )}
-  //       </Touchable>
-  //     );
-  //   },
-  //   [remainSeconds, sendSmsCode, sending],
-  // );
 
   // 是否勾选注册协议
   const [checked, setChecked] = useState(true);
@@ -210,12 +152,14 @@ const Register: React.FC<IProps> = ({navigation}) => {
                 <Text style={styles.head}>注册</Text>
                 <Field
                   name="mobile"
+                  keyboardType="phone-pad"
                   placeholder="请输入手机号码"
                   prefix={<Text style={styles.tag}>+86</Text>}
                   component={Input}
                 />
                 <Field
                   name="smsCode"
+                  keyboardType="number-pad"
                   placeholder="请输入验证码"
                   suffix={getSmsBtn}
                   component={Input}
@@ -236,7 +180,6 @@ const Register: React.FC<IProps> = ({navigation}) => {
                   name="inviteCode"
                   placeholder={`邀请码（${inviteFlag ? '必填' : '选填'}）`}
                   component={Input}
-                  secureTextEntry
                 />
                 <View style={styles.agree_box}>
                   <CheckBox

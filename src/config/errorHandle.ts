@@ -1,7 +1,5 @@
-// import { message } from 'antd';
 import store from '@/config/dva';
 import {toast} from '../utils';
-// import { StoreToken } from './storage';
 
 // 接口返回的errorCode是否表示超时
 const isTimeout = (errorCode: string) => {
@@ -46,7 +44,7 @@ const _goLoginPage = (() => {
 
 const errorHandle = (error: any) => {
   if (__DEV__) {
-    console.error('error', error.config.url, error);
+    console.log('error', error.config.url, error);
   }
   if ('statusCode' in error && error.statusCode === 401) {
     _goLoginPage();

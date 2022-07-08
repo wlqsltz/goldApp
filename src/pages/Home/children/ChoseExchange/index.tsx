@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {
-  ScrollView,
   Text,
   StyleSheet,
   Image,
@@ -20,16 +19,6 @@ const themeColor = '#D59420';
 
 interface IProps {
   navigation: RootStackNavigation;
-}
-
-export interface IExchange {
-  cname: string;
-  ename: string;
-  id: string;
-  logo: string;
-  orderNo: number;
-  status: string;
-  statusName: string;
 }
 
 const ChoseExchange: React.FC<IProps> = ({navigation}) => {

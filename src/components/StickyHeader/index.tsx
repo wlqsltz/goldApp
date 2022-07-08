@@ -34,6 +34,7 @@ const StickyHeader: React.FC<IProps> = React.memo(props => {
 
   const translateY = useMemo(() => {
     const y = stickyHeaderY !== -1 ? stickyHeaderY : stickyLayoutY;
+    console.log(y);
     return stickyScrollY.interpolate({
       inputRange: [-1, 0, y, y + 1],
       outputRange: [0, 0, 0, 1],

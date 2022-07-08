@@ -9,6 +9,7 @@ import {
   RefreshControl,
   ListRenderItemInfo,
   Image,
+  StatusBar,
 } from 'react-native';
 import {RouteProp, useFocusEffect} from '@react-navigation/native';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
@@ -159,6 +160,7 @@ const Community: React.FC<IProps> = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <ImageBackground source={BgIcon} style={styles.bg}>
         <View style={[styles.parallaxHeader, padTopStyle]}>
           <Text style={styles.rank_title}>当前排名</Text>

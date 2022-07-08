@@ -7,32 +7,50 @@ import {
   TextInputProps,
   ViewStyle,
   StyleProp,
+  TextStyle,
 } from 'react-native';
-import {FieldInputProps, FormikContextType, FormikProps, useFormikContext} from 'formik';
+import {
+  FieldInputProps,
+  FormikContextType,
+  FormikProps,
+  useFormikContext,
+} from 'formik';
 
 interface IProps extends TextInputProps {
   prefix?: JSX.Element;
   suffix?: (context: FormikContextType<any>) => JSX.Element;
   field: FieldInputProps<any>;
   form: FormikProps<any>;
+  containerStyle?: StyleProp<ViewStyle>;
   errorStyle?: StyleProp<ViewStyle>;
+  inputStyle?: StyleProp<TextStyle>;
 }
 
 const Input: React.FC<IProps> = props => {
   const context = useFormikContext();
-  const {form, field, prefix, suffix, errorStyle, ...rest} = props;
+  const {
+    form,
+    field,
+    prefix,
+    suffix,
+    containerStyle,
+    errorStyle,
+    inputStyle,
+    ...rest
+  } = props;
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <View style={styles.input_box}>
         {prefix ? prefix : null}
         <TextInput
-          style={styles.input}
+          style={[styles.input, inputStyle]}
           placeholderTextColor="#ccc"
           autoCapitalize="none"
           clearButtonMode="while-editing"
           {...rest}
           onChangeText={form.handleChange(field.name)}
           onBlur={form.handleBlur(field.name)}
+          value={field.value}
         />
         {suffix ? suffix(context) : null}
       </View>

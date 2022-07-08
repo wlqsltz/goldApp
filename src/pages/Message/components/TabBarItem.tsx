@@ -20,7 +20,6 @@ const TabBarItem: React.FC<IProps> = ({
   tabClick,
 }) => {
   const handleClick = useCallback(() => {
-    console.log('handleClick', index);
     tabClick(index);
   }, [index, tabClick]);
 

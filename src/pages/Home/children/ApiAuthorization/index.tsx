@@ -22,6 +22,7 @@ import {unbundlingApiKey} from '@/api/user';
 import {toast} from '@/utils/index';
 import UnBindFailedModal from './components/UnBindFailedModal';
 import ChangeModal from './components/ChangeModal';
+import { useFocusEffect } from '@react-navigation/native';
 
 const themeColor = '#D59420';
 
@@ -49,16 +50,21 @@ const ApiAuthorization: React.FC<IProps> = ({navigation}) => {
   const apiKeyIndex = useSelector(selectApiKeyIndex);
   const [hasMore, setHasMore] = useState(true);
 
-  useEffect(() => {
-    InteractionManager.runAfterInteractions(() => {
-      dispatch({
-        type: 'user/getExchangeApiKey',
-        callback: () => {
-          setHasMore(false);
-        },
+  useFocusEffect(
+    useCallback(() => {
+      const task = InteractionManager.runAfterInteractions(() => {
+        setTimeout(() => {
+          dispatch({
+            type: 'user/getExchangeApiKey',
+            callback: () => {
+              setHasMore(false);
+            },
+          });
+        }, 0);
       });
-    });
-  }, [dispatch]);
+      return () => task.cancel();
+    }, [dispatch]),
+  );
 
   const goChoseExchange = useCallback(() => {
     navigation.navigate('ChoseExchange');

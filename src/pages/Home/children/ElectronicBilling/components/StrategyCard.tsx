@@ -7,7 +7,8 @@ import Avatar from '@/components/Avatar';
 import IconFont from '@/assets/iconfont';
 import {RootState} from '@/models/index';
 import {RootStackNavigation} from '@/navigator/index';
-import { SCREEN_WIDTH } from '@/utils/';
+import {SCREEN_WIDTH} from '@/utils/';
+import Touchable from '@/components/Touchable';
 
 const themeColor = '#D59420';
 const boxWidth = SCREEN_WIDTH - 30;
@@ -24,10 +25,10 @@ const selectUser = createSelector(
 export default function StrategyCard({info}: Props) {
   const userInfo = useSelector(selectUser);
   const navigation = useNavigation<RootStackNavigation>();
-  const goBillPage = useCallback(async () => {
+  const goBilling = useCallback(async () => {
     // await saveMsg('accountId', userInfo.accountId);
-    // navigation.navigate('ElectronicBilling');
-  }, [userInfo, navigation]);
+    navigation.navigate('Billing');
+  }, [navigation]);
   return (
     <View style={styles.container}>
       <View style={styles.top_box}>
@@ -35,25 +36,22 @@ export default function StrategyCard({info}: Props) {
         <View style={styles.msg_box}>
           <Text style={styles.name}>{userInfo?.nickname || '--'}</Text>
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          activeOpacity={0.9}
-          onPress={goBillPage}>
+        <Touchable style={styles.button} onPress={goBilling}>
           <Text style={styles.button_txt}>查看详情</Text>
           <IconFont name="icon-right" size={10} color={themeColor} />
-        </TouchableOpacity>
+        </Touchable>
       </View>
       <View style={styles.bottom_box}>
         <View style={styles.item_box}>
           <Text style={styles.item_title}>今日收益</Text>
           <Text style={[styles.item_value, styles.item_value_primary]}>
-            {'dayIncomeAmount' in info ? `+${info.dayIncomeAmount}` : '--'}
+            {info.dayIncomeAmount ?? '--'}
           </Text>
         </View>
         <View style={styles.item_box_right}>
           <Text style={styles.item_title}>累计收益</Text>
           <Text style={[styles.item_value, styles.item_value_primary]}>
-            {'cumulativeIncome' in info ? `+${info.cumulativeIncome}` : '--'}
+            {info.cumulativeIncome ?? '--'}
           </Text>
         </View>
       </View>

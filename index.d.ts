@@ -63,6 +63,7 @@ declare module '*.png';
 interface IUser {
   accountBalance: string;
   accountId: string;
+  apiKeyStatus?: string;
   authenticationStatus: string;
   createDatetime: number;
   id: string;
@@ -106,6 +107,17 @@ interface IAccount {
   withdrawalAmount: string;
 }
 
+interface IExchange {
+  cname: string;
+  ename: string;
+  id: string;
+  logo: string;
+  orderNo: number;
+  status: string;
+  statusName: string;
+}
+
+// 账户流水
 interface IBill {
   accountNumber: string;
   accountType: string;
@@ -125,6 +137,18 @@ interface IBill {
   transAmount: string;
   type: string;
   userId: string;
+}
+
+// 提币、互转流水
+interface ITransfer {
+  id: string;
+  amount: string;
+  currency: string;
+  applyDatetime: number;
+  fee: string;
+  status: string;
+  toAddress: string;
+  toUser: IUser;
 }
 
 interface IPageParams {
@@ -280,4 +304,66 @@ interface IDict {
   id: string;
   key: string;
   value: string;
+}
+
+interface IPairDayIncome {
+  exchangeName: string;
+  exchangeNo: string;
+  symbol: string;
+  toSymbol: string;
+  todayIncome: string;
+  totalIncome: string;
+}
+
+interface IDayIncome {
+  todayIncome: string;
+  totalIncome: string;
+  currency: string;
+  pairDayIncomeList: IPairDayIncome[];
+}
+
+interface IXStrategyHistory {
+  createTime: number;
+  currentTimes: number;
+  entrustAmount: string;
+  exchangeCode: string;
+  exchangeName: string;
+  id: string;
+  lastEnstrustCommandId: string;
+  lastTradePrice: string;
+  plAmount: string;
+  positionCount: string;
+  positionPrice: string;
+  strategyId: string;
+  symbol: string;
+  toSymbol: string;
+}
+
+interface ITradeRecord {
+  actionType: string;
+  actionTypeName: string;
+  avgPrice: string;
+  cancelDatetime: number | null;
+  createDatetime: number;
+  dataTime: number | null;
+  direction: string;
+  enstrustExchange: string;
+  enstrustStatus: string;
+  enstrustTradeCode: string;
+  feeSymbol: string;
+  id: string;
+  lastTradedDatetime: number;
+  price: string;
+  source: string;
+  status: string;
+  strategyCycleId: string;
+  strategyId: string;
+  symbol: string;
+  toSymbol: string;
+  totalAmount: string;
+  totalCount: string;
+  tradedAmount: string;
+  tradedCount: string;
+  tradedFee: string;
+  type: string;
 }

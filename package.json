@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@nartc/react-native-barcode-mask": "^1.2.0",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/masked-view": "^0.1.11",
@@ -27,6 +28,7 @@
     "formik": "^2.2.9",
     "react": "17.0.2",
     "react-native": "0.65.1",
+    "react-native-camera": "^4.1.1",
     "react-native-check-box": "^2.1.7",
     "react-native-datepicker": "^1.7.2",
     "react-native-gesture-handler": "^1.10.3",
